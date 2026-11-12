@@ -1,0 +1,33 @@
+debug: true
+spring:
+  application:
+    name: asset_management
+    security: 
+      jwt:
+        secret-key: 1A2B3C4D5E6F7G8H9I1J2K3L4M5N6O7P8Q9R
+        expiration-ms: 86400000
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/asset_management_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+      pool-name: AssetManagementHikariCP
+  
+  jpa:
+    # database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
